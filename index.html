@@ -224,6 +224,35 @@ label,.cap{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:v
   .offers button{padding:7px}
   .sheet{max-height:72%}
 }
+/* Xin xăm */
+.xamtopics{display:flex;flex-wrap:wrap;gap:6px}
+.xamtopics button{appearance:none;font:inherit;font-size:13px;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer}
+.xamtopics button[aria-pressed="true"]{background:var(--lacquer);border-color:var(--gold);color:var(--fg)}
+.xamstage{position:relative;height:230px;display:grid;place-items:end center;margin:6px 0 4px}
+.ong{position:relative;width:96px;height:200px;transform-origin:50% 100%}
+.ong .sticks{position:absolute;left:12px;right:12px;bottom:110px;height:80px;display:flex;justify-content:center;align-items:flex-end;gap:3px}
+.ong .sticks i{display:block;width:5px;height:70px;border-radius:2px;background:linear-gradient(#e8c98a,#b88a45)}
+.ong .sticks i:nth-child(odd){height:62px}.ong .sticks i:nth-child(3n){height:76px}
+.ong .sticks i:nth-child(6){background:linear-gradient(#ff6b5a 0 14px,#e8c98a 14px,#b88a45)}
+.ong .cup{position:absolute;left:0;right:0;bottom:0;height:120px;border-radius:10px 10px 16px 16px;background:linear-gradient(90deg,#5a160f,#a8322a 45%,#6e1a14);border:2px solid var(--gold);display:grid;place-items:center;box-shadow:inset 0 6px 0 rgba(224,173,76,.35),0 10px 24px rgba(0,0,0,.5)}
+.ong .cup span{font-family:var(--display);font-weight:700;color:var(--gold);font-size:19px;writing-mode:vertical-rl;letter-spacing:.08em}
+.ong.shake{animation:xamshake .3s ease-in-out infinite}
+.ong.out .sticks i:nth-child(6){transform:translateY(-46px) rotate(-6deg);transition:transform .5s cubic-bezier(.2,1.4,.4,1)}
+@keyframes xamshake{0%,100%{transform:rotate(-11deg)}50%{transform:rotate(11deg) translateY(-4px)}}
+.popq{position:absolute;top:0;left:50%;transform:translate(-50%,10px);opacity:0;font-family:var(--display);font-weight:700;font-size:30px;color:var(--gold);text-shadow:0 2px 10px rgba(0,0,0,.6);transition:opacity .4s,transform .4s}
+.popq.show{opacity:1;transform:translate(-50%,-4px)}
+.xamcard h3{margin:0;font-size:19px;font-weight:600;color:var(--fg)}
+.xamcard blockquote{display:grid;gap:2px;font-style:italic;font-size:21px}
+.xamlv{justify-self:center;margin:0;padding:3px 14px;border-radius:999px;background:var(--lacquer);border:1px solid var(--gold);color:var(--fg);font-weight:600;font-size:13px}
+.xamlv[data-lv="Hạ"]{background:#5a3a24}
+.xamlv[data-lv="Thượng thượng"]{background:linear-gradient(90deg,#9a7230,#e0ad4c);color:#2a160e}
+.xammean{margin:0;color:var(--fg);font-size:14.5px}
+.xamfocus{display:grid;gap:2px;background:rgba(224,173,76,.1);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.xamfocus b{color:var(--gold);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase}
+.xamfocus span{font-size:14.5px}
+.xamcard.fresh{animation:xamin .6s ease-out}
+@keyframes xamin{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.ong.shake,.xamcard.fresh{animation:none}.ong.out .sticks i:nth-child(6){transition:none}}
 </style>
 </head>
 <body>
@@ -246,6 +275,7 @@ label,.cap{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:v
     <button type="button" data-panel="chat" aria-label="Trò chuyện" title="Trò chuyện"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg><span class="badge" id="chatBadge" hidden>1</span></button>
     <button type="button" data-panel="wish" aria-label="Sổ nguyện" title="Sổ nguyện"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h10l2 2v16H6z"/><path d="M9 8h6M9 11h6M9 14h4"/></svg></button>
     <button type="button" data-panel="me" aria-label="Nhân vật" title="Nhân vật"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1-4 4-6 7-6s6 2 7 6"/></svg></button>
+    <button type="button" data-panel="xam" data-keep aria-label="Xin xăm" title="Xin xăm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 11h11l-1.6 10H8.1z"/><path d="M9 11V5M12 11V3.5M15 11V6"/><path d="M11 3.5h2"/></svg></button>
     <button type="button" data-panel="phap" aria-label="Lời Phật dạy hôm nay" title="Lời Phật dạy hôm nay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4c2 3 2 7 0 10-2-3-2-7 0-10zM5 9c3 0 6 2 7 5-3 1-6-1-7-5zM19 9c-3 0-6 2-7 5 3 1 6-1 7-5zM5 18h14"/></svg></button>
     <button type="button" id="photoBtn" aria-label="Chụp ảnh lưu niệm" title="Chụp ảnh lưu niệm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></button>
     <button type="button" id="shareBtn" aria-label="Mời bạn bè" title="Mời bạn bè"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg></button>
@@ -698,7 +728,8 @@ function evText(name,ev){const n='<b>'+escHtml(name)+'</b>';switch(ev.t){
   case 'level':return n+' vừa lên <b>Cấp '+(+ev.v||1)+'</b>';
   case 'join':return n+' vừa bước vào chánh điện';
   case 'streak':return n+' đã đến chùa '+(+ev.v||1)+' ngày liên tiếp';
-  case 'lamp':return n+' vừa thả một ngọn đèn hoa đăng trên hồ sen';}return '';}
+  case 'lamp':return n+' vừa thả một ngọn đèn hoa đăng trên hồ sen';
+  case 'xam':{const q=XAM[(+ev.v||0)-1];return q?n+' vừa xin được <b>quẻ '+escHtml(q[0])+'</b> (số '+(+ev.v)+')':'';}}return '';}
 function escHtml(s){const d=document.createElement('span');d.textContent=s;return d.innerHTML;}
 function emitEv(t,v){const ev={t,v,at:Date.now()};toast(evText(myDisplay(),ev),ROBES[me.c]);pushP({ev});if(t==='rounds'||t==='level'||t==='streak')flowerRain(6);}
 
@@ -814,8 +845,8 @@ let panel=null;
 document.querySelectorAll('.rail [data-panel]').forEach(b=>b.addEventListener('click',()=>{actx();openPanel(panel===b.dataset.panel?null:b.dataset.panel);}));
 document.getElementById('sheetClose').addEventListener('click',()=>openPanel(null));
 function openPanel(p){panel=p;sheet.classList.toggle('open',!!p);sheet.setAttribute('aria-hidden',!p);if(!p)return;
-  sTitle.textContent={rank:'Bảng công đức',chat:'Trò chuyện',wish:'Sổ nguyện',me:'Nhân vật',room:'Chọn chánh điện',phap:'Lời Phật dạy',photo:'Ảnh của bạn',people:'Ai đang online'}[p];renderPanel();}
-async function renderPanel(){if(panel==='rank')renderRank();if(panel==='chat')renderChat(true);if(panel==='wish')renderWish(true);if(panel==='me')renderMe();if(panel==='room')renderRoom();if(panel==='phap')renderPhap();if(panel==='people')renderPeople();}
+  sTitle.textContent={rank:'Bảng công đức',chat:'Trò chuyện',wish:'Sổ nguyện',me:'Nhân vật',room:'Chọn chánh điện',phap:'Lời Phật dạy',xam:'Xin xăm',photo:'Ảnh của bạn',people:'Ai đang online'}[p];renderPanel();}
+async function renderPanel(){if(panel==='rank')renderRank();if(panel==='chat')renderChat(true);if(panel==='wish')renderWish(true);if(panel==='me')renderMe();if(panel==='room')renderRoom();if(panel==='phap')renderPhap();if(panel==='xam')renderXam();if(panel==='people')renderPeople();}
 
 function renderRoom(){sBody.innerHTML='<p class="note">Mỗi chánh điện là một phòng riêng. Rủ bạn bè vào cùng một chánh điện để thấy nhau. Bảng công đức, trò chuyện và sổ nguyện dùng chung cho cả chùa.</p>';const g=document.createElement('div');g.className='roomgrid';for(let n=1;n<=ROOMS;n++){const a=document.createElement('a');a.className='btn'+(n===roomNo?'':' ghost');a.href='?phong='+n;a.textContent='Chánh điện '+n+' · '+roomCount(n)+' người'+(n===roomNo?' · bạn đang ở đây':'');g.appendChild(a);}sBody.appendChild(g);}
 
@@ -992,6 +1023,81 @@ function showImage(c,name){c.toBlob(blob=>{if(!blob){toastLocal('Không tạo đ
   const n=document.createElement('p');n.className='note';n.textContent='Nếu nút tải không chạy (thường gặp khi mở trong TikTok), hãy nhấn giữ vào ảnh để lưu, hoặc mở trang bằng Chrome hay Safari.';sBody.appendChild(n);},'image/jpeg',.9);}
 document.getElementById('photoBtn').addEventListener('click',()=>{actx();takePhoto();});
 
+/* ================= XIN XĂM ================= */
+// [bậc, tên quẻ, câu 6, câu 8, lời giải chung, gia đạo, công việc, sức khỏe, tình duyên, học hành]
+const XAM=[
+['Thượng thượng','Sen nở giữa hồ','Hồ thu sen nở ngát hương','Trăng soi đáy nước, con đường sáng trong','Mọi việc hanh thông. Tâm an thì phúc tự đến.','Gia đạo êm ấm, sắp có tin vui.','Công việc thuận lợi, được người giúp sức.','Sức khỏe dồi dào, tinh thần sáng suốt.','Duyên lành đến tự nhiên, không cần cưỡng cầu.','Học hành tấn tới, thi cử đỗ đạt.'],
+['Thượng thượng','Mưa xuân tưới ruộng','Mưa xuân tưới khắp ruộng đồng','Hạt gieo năm cũ nay bông trĩu cành','Công sức bỏ ra bấy lâu nay được đền đáp.','Nhà cửa sung túc, con cháu hiếu thảo.','Việc cũ có kết quả, tài lộc tăng dần.','Khỏe mạnh, ăn ngủ điều độ là đủ.','Người thương thật lòng, nên vun đắp.','Chăm chỉ lâu nay sẽ thấy kết quả xứng đáng.'],
+['Thượng thượng','Thuyền xuôi gió thuận','Thuyền xuôi gió thuận buồm căng','Sông dài nước lặng, bến bằng đón đưa','Thời vận đang lên, nên mạnh dạn tiến bước.','Cả nhà đồng lòng, việc gì cũng thành.','Dự định mới nên bắt tay làm ngay.','Sức khỏe tốt, tinh thần phấn chấn.','Sắp gặp người hợp ý, hợp lòng.','Thi cử gặp may, làm bài thuận tay.'],
+['Thượng thượng','Trăng rằm viên mãn','Đêm rằm trăng sáng tròn đầy','Nhà ai tiếng trẻ, sum vầy cháu con','Viên mãn, đoàn tụ. Giữ lòng ngay thẳng thì cầu được ước thấy.','Sum họp đoàn viên, nhà có thêm người.','Ổn định, được cấp trên tín nhiệm.','Bình an, ít đau ốm.','Duyên đã đến lúc thành đôi.','Đạt kết quả như mong muốn.'],
+['Thượng','Mai vàng chớm nụ','Cành mai chớm nụ đầu xuân','Gió đông chưa dứt, nắng gần đã sang','Điều tốt đang tới gần. Kiên nhẫn thêm chút nữa.','Sắp có chuyện vui trong nhà.','Cơ hội gần kề, hãy chuẩn bị sẵn sàng.','Bệnh nhẹ rồi sẽ qua.','Chờ thêm ít lâu sẽ gặp.','Cố thêm một chút là đạt.'],
+['Thượng','Giếng làng nước ngọt','Giếng làng nước ngọt trong veo','Ai qua cũng múc, chẳng nghèo đi đâu','Cho đi rộng lượng thì phúc chẳng vơi.','Hòa thuận nhờ biết nhường nhịn nhau.','Giúp người hôm nay, người giúp lại mai sau.','Uống đủ nước, giữ lòng thanh thản.','Chân thành là gốc của tình thương.','Học cùng bạn bè sẽ tiến bộ nhanh.'],
+['Thượng','Chim về tổ cũ','Chiều buông chim mỏi về rừng','Tổ xưa còn đó, ai mừng đón ta','Quay về với cội nguồn sẽ thấy bình yên.','Nên về thăm cha mẹ, ông bà.','Việc quen tay làm tốt hơn việc lạ.','Cần nghỉ ngơi, bớt lo nghĩ.','Người cũ có thể quay lại.','Ôn lại kiến thức nền sẽ vững hơn.'],
+['Thượng','Lúa chín vàng đồng','Đồng xa lúa chín vàng ươm','Tay chai mới được bát cơm thơm lành','Siêng năng thì có ăn có để.','Gia đình đủ đầy, không thiếu thốn.','Chăm chỉ sẽ được ghi nhận.','Lao động vừa sức, sức khỏe bền lâu.','Người hiền lành, chịu khó là đáng quý.','Siêng năng ắt đỗ đạt.'],
+['Thượng','Cầu tre qua sông','Cầu tre lắt lẻo qua sông','Bước chậm mà chắc, sang xong bờ ngoài','Việc có khó, nhưng cẩn thận thì qua.','Bàn bạc kỹ trước khi làm việc lớn.','Làm từng bước, đừng nóng vội.','Đi lại cẩn thận, tránh té ngã.','Từ từ tìm hiểu nhau.','Học chắc từng phần một.'],
+['Thượng','Đèn hồng soi lối','Đêm khuya một ngọn đèn hồng','Soi đường người lạc, ấm lòng người đi','Có quý nhân soi đường chỉ lối.','Người lớn trong nhà chỉ bảo, nên nghe.','Có người nâng đỡ, giới thiệu việc tốt.','Đi khám định kỳ cho yên tâm.','Được người mai mối tốt.','Gặp thầy hay, bạn tốt.'],
+['Thượng','Sen trong bùn','Sen kia mọc giữa bùn đen','Mà hương vẫn ngát, chẳng hèn chút nao','Hoàn cảnh không quyết định con người. Giữ tâm sạch thì sẽ vươn lên.','Dù khó khăn vẫn giữ nếp nhà.','Giữ chữ tín, đừng đi đường tắt.','Bớt rượu bia, thức khuya.','Quý ở tấm lòng, không ở vẻ ngoài.','Đừng nản vì xuất phát thấp.'],
+['Thượng','Gió mát hiên nhà','Trưa hè gió mát hiên nhà','Võng đưa kẽo kẹt, lòng ta nhẹ nhàng','Biết đủ thì an vui.','Gia đình bình yên.','Công việc ổn định, chớ tham việc ngoài sức.','Nghỉ ngơi hợp lý.','Trân trọng người đang ở bên cạnh.','Học vừa sức, đều đặn mỗi ngày.'],
+['Trung','Mây phủ lưng đèo','Núi cao mây phủ lưng đèo','Đường lên còn dốc, cứ theo mà lần','Mục tiêu còn xa, cứ bền bỉ mà đi.','Chuyện nhà cần thêm thời gian.','Chưa thấy kết quả, đừng vội bỏ.','Kiên trì tập luyện sẽ khỏe dần.','Chưa rõ ràng, nên chờ thêm.','Còn phải cố gắng nhiều.'],
+['Trung','Nước ròng nước lớn','Nước ròng rồi lại nước lên','Thuyền ai neo đợi bên ghềnh đá xưa','Thời vận có lúc lên lúc xuống, biết chờ thời là khôn.','Bình thường, giữ hòa khí là quý.','Chưa phải lúc mở rộng làm ăn.','Theo dõi sức khỏe thường xuyên.','Đừng vội quyết định.','Ôn đều, đừng học dồn.'],
+['Trung','Cây non trước gió','Cây non trước gió rung cành','Rễ sâu bám đất, an lành qua mưa','Hãy củng cố nền tảng trước khi gặp thử thách.','Lo chuyện tiết kiệm, phòng xa.','Trau dồi tay nghề.','Ăn uống bồi bổ, ngủ sớm.','Hiểu nhau trước đã.','Nắm chắc kiến thức cơ bản.'],
+['Trung','Đường làng sau mưa','Mưa rồi đường đất trơn lầy','Nhẹ chân mà bước, nắng ngày mai lên','Khó khăn chỉ là tạm thời, ngày mai sẽ sáng.','Chuyện buồn rồi sẽ qua.','Tạm chậm lại một nhịp.','Cẩn thận trơn trượt, cảm lạnh.','Giận hờn rồi sẽ làm lành.','Một lần chưa tốt chưa phải là hết.'],
+['Trung','Đứng giữa ngã ba','Ngã ba đứng giữa đường xa','Hỏi người đi trước rồi ta hãy đi','Đang phân vân, nên hỏi ý người từng trải.','Bàn với người lớn trong nhà.','Đừng quyết một mình.','Hỏi ý thầy thuốc khi cần.','Lắng nghe ý gia đình.','Chọn ngành theo sở trường.'],
+['Trung','Chén trà pha lại','Chén trà để nguội trên bàn','Nhóm lò pha lại, chớ than muộn màng','Việc lỡ dở vẫn có thể bắt đầu lại.','Làm lành với người thân.','Cơ hội cũ có thể quay lại.','Bỏ thói quen xấu ngay từ hôm nay.','Hàn gắn được nếu chân thành.','Học lại không bao giờ muộn.'],
+['Trung','Trăng non','Trăng non mới hé một vành','Đợi mươi hôm nữa sẽ thành trăng tròn','Việc mới bắt đầu, cần thời gian vun đắp.','Mọi chuyện dần ổn định.','Khởi đầu chậm nhưng chắc.','Hồi phục từ từ.','Mới quen, cứ tự nhiên.','Tiến bộ từng ngày.'],
+['Trung','Lửa rơm, than củi','Lửa rơm bốc cháy rồi tàn','Củi khô cháy chậm, than còn ấm lâu','Nhiệt tình nhất thời không bằng bền bỉ lâu dài.','Giữ lời hứa với người nhà.','Đừng ôm đồm quá nhiều việc.','Tập đều quan trọng hơn tập nặng.','Tình bền quý hơn tình nồng.','Học mỗi ngày một ít.'],
+['Hạ','Thuyền gặp sóng','Biển chiều nổi sóng bạc đầu','Thuyền về neo bến, mai sau ra khơi','Chưa phải thời điểm. Tạm dừng để giữ an toàn.','Tránh tranh cãi trong nhà.','Hoãn việc lớn, cân nhắc lại chuyện ký kết.','Giữ gìn, thấy mệt thì nên đi khám.','Tạm lắng, đừng ép nhau.','Nghỉ ngơi cho đầu óc tỉnh táo.'],
+['Hạ','Mồi thơm lưỡi câu','Mồi thơm treo lưỡi câu vàng','Cá tham đớp vội, mắc ngang giữa dòng','Cẩn thận lời dụ dỗ và những món lợi quá dễ dàng.','Đừng cho vay mượn số tiền lớn.','Coi chừng lừa đảo, giấy tờ mập mờ.','Tránh ăn uống quá độ.','Tỉnh táo trước lời ngon ngọt.','Không gian lận, không đi đường tắt.'],
+['Hạ','Mưa dầm hiên nhà','Mưa dầm rả rích hiên nhà','Lòng yên thì đợi, mưa qua nắng về','Đang có chuyện phiền lòng. Giữ tâm tĩnh, rồi sẽ qua.','Nhẫn nhịn một chút cho êm nhà.','Chưa thuận, đừng nóng vội.','Giữ ấm, ngủ đủ giấc.','Có hiểu lầm, nên nói chuyện nhẹ nhàng.','Kết quả chưa như ý, đừng nản.'],
+['Hạ','Đá chắn dòng khe','Dòng khe gặp đá chắn ngang','Nước vòng qua đá, lại sang biển ngoài','Gặp trở ngại thì mềm mỏng, tìm hướng khác.','Đừng cố chấp với người nhà.','Đổi cách làm sẽ thông.','Thay đổi thói quen sinh hoạt.','Nhường nhịn nhau một bước.','Thử một phương pháp học mới.']];
+const XAM_TOPICS=[['gia','Gia đạo'],['cv','Công việc'],['sk','Sức khỏe'],['td','Tình duyên'],['hh','Học hành']];
+function xamTopicIdx(t){const i=XAM_TOPICS.findIndex(x=>x[0]===t);return i<0?0:i;}
+function xamToday(){const s=ls.get('ttt-xam',null);return s&&s.d===vnDay&&s.n>=1&&s.n<=XAM.length?s:null;}
+let xamTopic=ls.get('ttt-xam-topic','gia'),xamBusy=false;
+function xamTopicRow(onPick){const r=document.createElement('div');r.className='xamtopics';r.setAttribute('role','group');r.setAttribute('aria-label','Bạn muốn hỏi về');
+  XAM_TOPICS.forEach(([k,l])=>{const b=document.createElement('button');b.type='button';b.textContent=l;b.setAttribute('aria-pressed',k===xamTopic);b.addEventListener('click',()=>{xamTopic=k;ls.set('ttt-xam-topic',k);r.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));if(onPick)onPick();});r.appendChild(b);});return r;}
+function renderXam(){const today=xamToday();if(today){renderXamResult(today.n,false);return;}
+  sBody.innerHTML='';const intro=document.createElement('p');intro.className='note';intro.textContent='Thành tâm khấn nguyện điều mình muốn hỏi, chọn một việc bên dưới rồi lắc ống xăm. Mỗi ngày được xin một quẻ.';sBody.appendChild(intro);
+  sBody.appendChild(xamTopicRow());
+  const st=document.createElement('div');st.className='xamstage';st.innerHTML='<div class="ong" id="xamOng"><div class="sticks">'+'<i></i>'.repeat(11)+'</div><div class="cup"><span>Tịnh Tâm</span></div></div><div class="popq" id="xamPop" aria-live="polite"></div>';sBody.appendChild(st);
+  const go=document.createElement('button');go.type='button';go.className='btn big';go.textContent='Lắc ống xăm';go.addEventListener('click',()=>shakeXam(go));sBody.appendChild(go);}
+function shakeXam(btn){if(xamBusy)return;xamBusy=true;actx();btn.disabled=true;btn.textContent='Đang lắc…';
+  const n=1+Math.floor(Math.random()*XAM.length);ls.set('ttt-xam',{d:vnDay,n,t:xamTopic});
+  const ong=document.getElementById('xamOng'),pop=document.getElementById('xamPop');if(ong)ong.classList.add('shake');
+  const dur=reduce?500:2000;let k=0;const iv=setInterval(()=>{if(k++%2===0)mo(.4);else tick();},150);
+  setTimeout(()=>{clearInterval(iv);if(ong){ong.classList.remove('shake');ong.classList.add('out');}bell(.6);if(pop){pop.textContent='Quẻ số '+n;pop.classList.add('show');}
+    setTimeout(()=>{xamBusy=false;addPts(2);emitEv('xam',n);if(panel==='xam')renderXamResult(n,true);},reduce?300:1300);},dur);}
+function renderXamResult(n,fresh){const q=XAM[n-1];sBody.innerHTML='';
+  const c=document.createElement('div');c.className='phapcard xamcard'+(fresh?' fresh':'');
+  c.innerHTML='<p class="cap"></p><p class="xamlv"></p><h3></h3><blockquote></blockquote><p class="xammean"></p><div class="xamfocus"><b></b><span></span></div>';
+  c.querySelector('.cap').textContent='Quẻ số '+n+' · '+vnDate();c.querySelector('.xamlv').textContent='Quẻ '+q[0];c.querySelector('.xamlv').dataset.lv=q[0];
+  c.querySelector('h3').textContent=q[1];c.querySelector('blockquote').innerHTML='';[q[2],q[3]].forEach(l=>{const s=document.createElement('span');s.textContent=l;c.querySelector('blockquote').appendChild(s);});
+  c.querySelector('.xammean').textContent=q[4];
+  const fill=()=>{const i=xamTopicIdx(xamTopic);c.querySelector('.xamfocus b').textContent=XAM_TOPICS[i][1];c.querySelector('.xamfocus span').textContent=q[5+i];};fill();
+  sBody.appendChild(c);
+  const lab=document.createElement('p');lab.className='note';lab.textContent='Xem giải theo từng việc:';sBody.appendChild(lab);
+  sBody.appendChild(xamTopicRow(fill));
+  const row=document.createElement('div');row.className='row';row.style.flexWrap='wrap';
+  row.appendChild(mkBtn('Lưu thành ảnh',()=>makeXamImage(n).then(cv=>showImage(cv,'que-xam-'+n+'-'+vnDay+'.jpg'))));
+  row.appendChild(mkBtn('Rủ bạn xin xăm',async()=>{const url=location.href.split('#')[0]+'#xam';const text='Mình vừa xin được quẻ '+q[0]+' ở Tịnh Tâm Tự. Vào xin một quẻ đầu ngày nhé:';
+    if(navigator.share){try{await navigator.share({title:'Xin xăm · Tịnh Tâm Tự',text,url});return;}catch(e){if(e&&e.name==='AbortError')return;}}
+    try{await navigator.clipboard.writeText(text+' '+url);toastLocal('Đã chép lời mời, dán vào Zalo hoặc TikTok để gửi bạn bè.');}catch(e){toastLocal(url);}},true));
+  sBody.appendChild(row);
+  const n2=document.createElement('p');n2.className='note';n2.textContent=(fresh?'':'Hôm nay bạn đã xin quẻ rồi. Ngày mai quay lại xin quẻ mới nhé. ')+'Quẻ xăm mang tính chiêm nghiệm, nhắc mình sống thiện lành; việc hệ trọng xin hỏi thêm người có chuyên môn.';sBody.appendChild(n2);}
+async function makeXamImage(n){const q=XAM[n-1],i=xamTopicIdx(xamTopic);await fontsReady();const W=1080,H=1350,c=document.createElement('canvas');c.width=W;c.height=H;const g=c.getContext('2d');
+  const bg=g.createRadialGradient(W/2,360,40,W/2,620,900);bg.addColorStop(0,'#5a1a10');bg.addColorStop(1,'#1a0d08');g.fillStyle=bg;g.fillRect(0,0,W,H);frameCard(g,W,H);g.textAlign='center';
+  g.fillStyle='#c0a684';g.font='600 30px "Be Vietnam Pro",system-ui,sans-serif';g.fillText('QUẺ XĂM HÔM NAY · '+vnDate(),W/2,140);
+  g.fillStyle='#e0ad4c';g.font='700 120px "Cormorant Garamond",Georgia,serif';g.fillText('Quẻ số '+n,W/2,270);
+  const lv='Quẻ '+q[0];g.font='700 34px "Be Vietnam Pro",system-ui,sans-serif';const bw=g.measureText(lv).width+60;g.fillStyle=q[0]==='Hạ'?'#5a3a24':'#8c211b';g.beginPath();if(g.roundRect)g.roundRect(W/2-bw/2,305,bw,60,30);else g.rect(W/2-bw/2,305,bw,60);g.fill();g.strokeStyle='#e0ad4c';g.lineWidth=2;g.stroke();g.fillStyle='#f4e6cc';g.fillText(lv,W/2,347);
+  g.fillStyle='#f4e6cc';g.font='600 46px "Be Vietnam Pro",system-ui,sans-serif';g.fillText(q[1],W/2,450);
+  g.fillStyle='#f4e6cc';let vs=58;do{g.font='italic 700 '+vs+'px "Cormorant Garamond",Georgia,serif';vs-=2;}while(Math.max(g.measureText(q[2]).width,g.measureText(q[3]).width)>W-170&&vs>34);let y=560;[q[2],q[3]].forEach(l=>{g.fillText(l,W/2,y);y+=vs*1.3;});y+=20;
+  y+=20;g.strokeStyle='rgba(224,173,76,.55)';g.lineWidth=2;g.beginPath();g.moveTo(W/2-120,y);g.lineTo(W/2+120,y);g.stroke();y+=70;
+  g.fillStyle='#e8d6b6';g.font='500 36px "Be Vietnam Pro",system-ui,sans-serif';wrapLines(g,q[4],W-220).forEach(s=>{g.fillText(s,W/2,y);y+=52;});
+  y+=26;g.fillStyle='#e0ad4c';g.font='700 34px "Be Vietnam Pro",system-ui,sans-serif';g.fillText(XAM_TOPICS[i][1].toUpperCase(),W/2,y);y+=52;
+  g.fillStyle='#f4e6cc';g.font='500 36px "Be Vietnam Pro",system-ui,sans-serif';wrapLines(g,q[5+i],W-220).slice(0,2).forEach(s=>{g.fillText(s,W/2,y);y+=52;});
+  g.fillStyle='#e0ad4c';g.font='700 56px "Cormorant Garamond",Georgia,serif';g.fillText('Tịnh Tâm Tự',W/2,1210);
+  g.fillStyle='#c0a684';g.font='500 28px "Be Vietnam Pro",system-ui,sans-serif';g.fillText(location.host?('Xin quẻ cùng mình: '+location.host):'Tịnh Tâm Tự · chánh điện trực tuyến',W/2,1262);return c;}
+
 /* ================= CHỌN NHÂN VẬT NAM / NỮ ================= */
 function bindGPick(root){const box=root.querySelector('[data-gpick]');if(!box)return;const sync=()=>box.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.g===me.g));sync();
   box.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{me.g=b.dataset.g==='nu'?'nu':'nam';ls.set('ttt-gender',me.g);me.av.setGender(me.g);sync();pushP();}));}
@@ -1101,7 +1207,7 @@ ROBES.forEach((c,i)=>{const b=document.createElement('button');b.type='button';b
   b.addEventListener('click',()=>{me.c=i;ls.set('ttt3-robe',i);me.av.setColor(i);[...wSw.children].forEach((x,j)=>x.setAttribute('aria-pressed',j===i));});wSw.appendChild(b);});
 function setWStatus(){wStatus.textContent=connected?('Đã kết nối · '+peerSeen.size+' người đang ở Chánh điện '+roomNo):(everConn?'Đang nối lại…':'Đang kết nối…');}
 document.getElementById('enterForm').addEventListener('submit',e=>{e.preventDefault();actx();if(musicOn){musicInit();musicSync();}me.nick=str(wName.value,24).trim();ls.set('ttt-nick',me.nick);entered=true;welcome.hidden=true;
-  flushP();netSaveMerit();renderOnline();toastLocal('Bạn đã vào Chánh điện '+roomNo+'. Chạm vào bồ đoàn để ngồi xuống.');if(ls.get('ttt-phap-seen',0)!==vnDay)setTimeout(()=>openPanel('phap'),1600);checkIn();globalBeat();setTimeout(()=>checkKL(!!QP.get('khoale')),2600);});
+  flushP();netSaveMerit();renderOnline();toastLocal('Bạn đã vào Chánh điện '+roomNo+'. Chạm vào bồ đoàn để ngồi xuống.');if(location.hash==='#xam')setTimeout(()=>openPanel('xam'),1600);else if(ls.get('ttt-phap-seen',0)!==vnDay)setTimeout(()=>openPanel('phap'),1600);checkIn();globalBeat();setTimeout(()=>checkKL(!!QP.get('khoale')),2600);});
 document.getElementById('shareBtn').addEventListener('click',async()=>{const url=location.href.split('#')[0];
   const data={title:'Tịnh Tâm Tự',text:'Cùng vào chánh điện trực tuyến, thắp hương và niệm Phật với mình nhé',url};
   if(navigator.share){try{await navigator.share(data);return;}catch(e){if(e&&e.name==='AbortError')return;}}
